@@ -1,0 +1,54 @@
+# Define a vertex.
+#
+# Syntax:
+# <vertex name> <x coord|vertex name for x|line name for x> <y coord|vertex name for y|line name for y>
+#
+# Explanation:
+# vertex name: must start with a letter and must consist of letters and digits only. Must be unique for
+# each vertex. Also, vertex names like "n[0-9]+" are reserved by the modeling language so please do not use them.
+# x/y coord: integers or floats. Will be converted into floats internally.
+# vertex name for x/y: when specified, the x/y coord of this vertex will be used to create the new vertex.
+# The vertex name must be defined already.
+# line name for x/y: when specified, the x coord of a vertical line/the y coordinate of horizontal line will
+# be used to create the new vertex. The line name must be defined already. An error will be raised if the
+# line does not have the correct type, e.g., using a vertical line for y.
+#
+# Define a line.
+#
+# Syntax:
+# <line name> <v|h> start <xy coord|vertex name> end <length|vertex name|line name>
+#
+# Explanation:
+# line name: must start with a letter and must consist of letters and digits only. Must be unique for each
+# line.
+# v|h: specifiy whether this line is vertical or horizontal.
+# xy coord: two numbers separated by a space, used to specify one end of the line.
+# vertex name: used to sepcify one end point of the line. Must be defined already.
+# length: for horizontal lines: +/- means going right/left; For vertical lines, +/- means going up/down.
+# vertex name: for horizontal (vertical) lines, the x (y) coord of this vertex will be used to define the
+# othe endpoint.
+# line name: for horizontal (vertical) lines, the x (y) coord of this vertical (horizontal) line will be used
+# to define the other endpoint.
+#
+# Other important facts that you need to know:
+# - Line splitting will be automatically handled. Duplicates lines/vertices are not allowed. A vertex is duplicated
+# if it has the same name or exactly the same numerical values as an existing vertex. A line is duplicated if it
+# has the same name or it has exactly the same endpoints as an existing line.
+# - You can use <line name>_<left|right|top|bottom> to index an endpoint of a line.
+# - When a new line is added, it will always segment other lines (including itself) whenever an intersection occurs.
+
+root 0 0
+top 0 2
+right 1 2
+bottom 1 1
+l0 v start root end top
+l1 h start top end right
+l2 v start right end bottom
+l3 h start bottom end l0
+
+# Alternative, you can define the same thing as below.
+# root 0 0
+# bar v start root end 2
+# flagtop h start bar_top end 1
+# flagright v start flagtop_right end -1
+# flagbottom h start flagright_bottom end bar
