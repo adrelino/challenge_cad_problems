@@ -83,6 +83,7 @@ def run(target_file):
             print('name:', l, 'end points:', v0, v1, 'type:', t)
         print('type in your command:')
         s = input()
+        #TODO use parse_command here
         tokens = s.strip().split()
         try:
             if tokens[0] in ['v0', 'v1', 'v2', 'v3']:

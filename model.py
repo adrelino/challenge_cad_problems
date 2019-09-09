@@ -54,6 +54,16 @@ class SimpleBrep(object):
         self.vertices = {}
         self.lines = {}
         self.used_names = set()
+    
+    @staticmethod
+    def parse_command(some_string):
+        """
+        Input a string
+        Output an AST object
+        """
+        assert type(some_string) == type(""), "you crazy"
+        # TODO: write this
+        raise NotImplementedError
 
     def check_brep(self):
         # First, all names must be valid and unique.
@@ -444,6 +454,7 @@ class SimpleBrep(object):
             self.execute_vertex_command([n, x, y])
 
     def execute_command(self, command):
+        #TODO: use parse_command here
         tokens = command.split()
         if len(tokens) == 3:
             # Vertex.

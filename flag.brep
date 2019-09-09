@@ -1,0 +1,10 @@
+root 0.0 0.0
+top 0.0 2.0
+right 1.0 2.0
+bottom 1.0 1.0
+n0 0.0 1.0
+n1 root n0
+n2 n0 top
+l1 top right
+l2 bottom right
+l3 n0 bottom
